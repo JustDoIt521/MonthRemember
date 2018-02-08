@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="type/html;charset=utf-8">
+		<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+		</script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div id="calendar">
+			<div id="change">
+				<div id="left" style="float:left;">
+					<button id="leftMonth"><h1><</h1></button>
+				</div>
+				<div id="nowMonth"></div>
+				<div id="right" style="float:right;">
+					<button id="rightMonth"><h1>></h1></button>
+				</div>
+			</div>
+			<div id="mainBody">
+				<table id="detailData">
+					<tr>
+						<th>周日</th>
+						<th>周一</th>
+						<th>周二</th>
+						<th>周三</th>
+						<th>周四</th>
+						<th>周五</th>
+						<th>周六</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+		var $list="<tr>"+"<th>"+" "+"</th>"+
+					"<th>"+" "+"</th>"+
+					"<th>"+" "+"</th>"+
+					"<th>"+" "+"</th>"+
+					"<th>"+" "+"</th>"+
+					"<th>"+" "+"</th>"+
+					"<th>"+" "+"</th>"+
+					"</tr>";			
+		for(var i=0;i<5;i++){
+			//console.log(1);
+			$("#detailData").append($list);
+		}
+
+		var days=function(){
+			var m=0,n=0;
+			var k="linear-gradient(120deg, #155799, #159957)";
+			$("#detailData tr").each(function(i){
+				$(this).css("background-image",k);
+				n++;
+				if(n<=1){
+				 	return true;
+				}else{
+					$(this).children("th").each(function(j){
+						$(this).attr("id",m++);
+						$(this).html("<p>"+m+"</p>");
+					});
+				}
+			});
+		}
+
+		$("#leftMonth").click(function(){
+			$("#mainBody").fadeOut("slow",function(){
+				$("#mainBody").fadeIn("slow",function(){
+					days();
+				});
+			});
+		});
+
+		$("#rightMonth").click(function(){
+			$("#mainBody").fadeOut("slow",function(){
+				$("#mainBody").fadeIn("slow");
+				days();
+			});
+		});
+	});
+	</script>
+</html>
