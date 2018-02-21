@@ -1,84 +1,95 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta content="type/html;charset=utf-8">
-		<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
-		</script>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
-	<body>
-		<div id="calendar">
-			<div id="change">
-				<div id="left" style="float:left;">
-					<button id="leftMonth"><h1><</h1></button>
-				</div>
-				<div id="nowMonth"></div>
-				<div id="right" style="float:right;">
-					<button id="rightMonth"><h1>></h1></button>
-				</div>
-			</div>
-			<div id="mainBody">
-				<table id="detailData">
-					<tr>
-						<th>周日</th>
-						<th>周一</th>
-						<th>周二</th>
-						<th>周三</th>
-						<th>周四</th>
-						<th>周五</th>
-						<th>周六</th>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</body>
-	<script type="text/javascript">
-	$(document).ready(function(){
 
-		var $list="<tr>"+"<th>"+" "+"</th>"+
-					"<th>"+" "+"</th>"+
-					"<th>"+" "+"</th>"+
-					"<th>"+" "+"</th>"+
-					"<th>"+" "+"</th>"+
-					"<th>"+" "+"</th>"+
-					"<th>"+" "+"</th>"+
-					"</tr>";			
-		for(var i=0;i<5;i++){
-			//console.log(1);
-			$("#detailData").append($list);
-		}
+<head>
+    <meta content="type/html;charset=utf-8">
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 
-		var days=function(){
-			var m=0,n=0;
-			var k="linear-gradient(120deg, #155799, #159957)";
-			$("#detailData tr").each(function(i){
-				$(this).css("background-image",k);
-				n++;
-				if(n<=1){
-				 	return true;
-				}else{
-					$(this).children("th").each(function(j){
-						$(this).attr("id",m++);
-						$(this).html("<p>"+m+"</p>");
-					});
-				}
-			});
-		}
+<body>
+    <div id="calendar">
+        <div id="change">
+            <div id="left">
+                <button id="leftMonth"><h1><</h1></button>
+            </div>
+            <div id="nowMonth"></div>
+            <div id="right">
+                <button id="rightMonth"><h1>></h1></button>
+            </div>
+        </div>
+        <div id="mainBody">
+            <table id="detailData">
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wen</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+<script src="Dtime.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
 
-		$("#leftMonth").click(function(){
-			$("#mainBody").fadeOut("slow",function(){
-				$("#mainBody").fadeIn("slow",function(){
-					days();
-				});
-			});
-		});
+        //表格样式
+        var shape = function() {
+                // $("detaildata").html(" ");
+                var $list = "<tr>" + "<th>" + " " + "</th>" +
+                    "<th>" + " " + "</th>" +
+                    "<th>" + " " + "</th>" +
+                    "<th>" + " " + "</th>" +
+                    "<th>" + " " + "</th>" +
+                    "<th>" + " " + "</th>" +
+                    "<th>" + " " + "</th>" +
+                    "</tr>";
+                for (var i = 0; i < 6; i++) {
+                    //console.log(1);
+                    $("#detailData").append($list);
+                }
+            }
+            //左侧样式表
+        $("#leftMonth").click(function() {
+            $("#mainBody").fadeOut("slow", function() {
+                $("#mainBody").fadeIn("slow", function() {
+                    if (month == 1) {
+                        month = 12;
+                        year = year - 1;
+                    } else {
+                        month = month - 1;
+                    }
+                    days(year, month);
+                });
+            });
+        });
+        //右侧样式表
+        $("#rightMonth").click(function() {
+            $("#mainBody").fadeOut("slow", function() {
+                $("#mainBody").fadeIn("slow");
+                if (month == 12) {
+                    month = 1;
+                    year = year + 1;
+                } else {
+                    month = month + 1;
+                }
+                days(year, month);
+            });
+        });
+        //当前日期数据
+        var nowData = new Date();
+        var year = nowData.getFullYear();
+        var month = nowData.getMonth() + 1;
+        var day = nowData.getDate();
+        var week = nowData.getDay();
+        shape();
+        days(year, month);
+    });
+</script>
 
-		$("#rightMonth").click(function(){
-			$("#mainBody").fadeOut("slow",function(){
-				$("#mainBody").fadeIn("slow");
-				days();
-			});
-		});
-	});
-	</script>
 </html>
