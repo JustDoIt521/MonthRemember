@@ -1,64 +1,80 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-	<style type="text/css">
-		table,tr,td
-		{
-			width:100px;
-			height:100px;
-			border:2px solid #1E90FF;
-			text-align:center;
-		}
-	</style>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style type="text/css">
+        table,
+        tr,
+        td {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #1E90FF;
+            text-align: center;
+        }
+        
+        #month {
+            background-image: linear-gradient(120deg, #F7232D, #E9FA00);
+            width: 100px;
+            height: 100px;
+            border: 1px solid #1E90FF;
+        }
+    </style>
 </head>
+
 <body>
-	<div id="test">
-		<table id="show">
-		</table>
-		<button id="change">change</button>
-		<div id="month"></div>
-	</div>
+    <div id="test">
+        <table id="show">
+        </table>
+        <button id="change">change</button>
+        <div id="month"></div>
+    </div>
 </body>
-	<script type="text/javascript">
-		$(document).ready(function()
-			{
-				// var $n="";
-				// var $con="<tr>"+"<td>"+1+"</td>"+"<td>"+2+"</rd>"+"</tr>";
-				// for(var i=0;i<5;i++)
-				// {
-				// 	$("#show").append($($con));
-				// }
-				var $con="<tr>"+"<td>"+1+"</td>"+"<td>"+2+"</rd>"+"</tr>";
-					$("#show").append($($con));
-				var $con="<tr>"+"<td>"+3+"</td>"+"<td>"+4+"</rd>"+"</tr>";
-					$("#show").append($($con));
-				var $con="<tr>"+"<td>"+5+"</td>"+"<td>"+6+"</rd>"+"</tr>";
-					$("#show").append($($con));
-				var $con="<tr>"+"<td>"+7+"</td>"+"<td>"+8+"</rd>"+"</tr>";
-					$("#show").append($($con));
-				$("#change").click(function(){
-				// 	var m=0;
-				// 	$("#show tr").each(function(i){
-				// 		$(this).children("td").each(function(j){
-				// 			$(this).css("background-color","yellow");
-				// 			$(this).attr("id",m);
-				// 			m++;
-				// 		});
-				// 	});
-					$("#show tr").each(function(){
-						$(this).css("background-image","linear-gradient(120deg, #155799, #159957)");
-					});
-				 });
-				var mydate=new Date(2018,08,03);
-				var m=mydate.getFullYear();
-				var m2=mydate.getMonth();
-				var m3=mydate.getDate();
-				var m4=mydate.getDay();
-				$("#month").html("<p>"+m+"++"+(m2+1)+"++"+m3+"++"+m4+"</p>");
-				//var temp=new Date(2018,01,3);
-				//console.log(temp);
-			});
-	</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        console.log($("#month").attr("background-image"));
+        $("#month").hover(function() {
+            $("#month").css("background-image", "#DCDCDC");
+        }, function() {
+            $("#month").css("background-image", "#1E90FF");
+        });
+    });
+    // var $n="";
+    // var $con="<tr>"+"<td>"+1+"</td>"+"<td>"+2+"</rd>"+"</tr>";
+    // for(var i=0;i<5;i++)
+    // {
+    // 	$("#show").append($($con));
+    // }
+    // var $con="<tr>"+"<td>"+1+"</td>"+"<td>"+2+"</rd>"+"</tr>";
+    // 	$("#show").append($($con));
+    // var $con="<tr>"+"<td>"+3+"</td>"+"<td>"+4+"</rd>"+"</tr>";
+    // 	$("#show").append($($con));
+    // var $con="<tr>"+"<td>"+5+"</td>"+"<td>"+6+"</rd>"+"</tr>";
+    // 	$("#show").append($($con));
+    // var $con="<tr>"+"<td>"+7+"</td>"+"<td>"+8+"</rd>"+"</tr>";
+    // 	$("#show").append($($con));
+    // $("#change").click(function(){
+    // 	var m=0;
+    // 	$("#show tr").each(function(i){
+    // 		$(this).children("td").each(function(j){
+    // 			$(this).css("background-color","yellow");
+    // 			$(this).attr("id",m);
+    // 			m++;
+    // 		});
+    // 	});
+    // 	$("#show tr").each(function(){
+    // 		$(this).css("background-image","linear-gradient(120deg, #155799, #159957)");
+    // 	});
+    //  });
+    // var mydate=new Date(2018,08,03);
+    // var m=mydate.getFullYear();
+    // var m2=mydate.getMonth();
+    // var m3=mydate.getDate();
+    // var m4=mydate.getDay();
+    // $("#month").html("<p>"+m+"++"+(m2+1)+"++"+m3+"++"+m4+"</p>");
+    //var temp=new Date(2018,01,3);
+    //console.log(temp);
+</script>
+
 </html>
